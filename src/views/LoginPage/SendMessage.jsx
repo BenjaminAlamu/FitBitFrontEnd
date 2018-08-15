@@ -1,4 +1,5 @@
 import React from "react";
+import {Link, Redirect} from 'react-router-dom';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -29,26 +30,27 @@ class SendMessage extends React.Component {
     // we use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: "cardHidden",
-      error: " "
+      error: " ",
+      success: false
     }
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  handleLogin(e){
+  handleSubmit(e){
     console.log("Here");
     e.preventDefault();
-    let username = document.getElementById('username').value;
-    let password = document.getElementById('password').value;
+    let doctor = "Test Doctor";
+    let patient = "Sample User"
+    let message = document.getElementById('message').value;
     
     const self = this;
-        fetch('http://localhost:1337/login', {
-            
+        fetch('http://localhost:1337/notification', {
+          body:JSON.stringify({
+            message,
+            doctor,
+            patient
+        }),
             method: 'POST',
-            // credentials: "include",
-            body:JSON.stringify({
-                username,
-                password
-            }),
             headers: {
               Accept: "application/json",
                 "Content-Type": "application/json",
@@ -59,6 +61,7 @@ class SendMessage extends React.Component {
           console.log(data);
             if(data.success === true){
                 console.log("Here baby");
+                self.setState({ success: true });
             }
             else{
                 self.setState({ error: data.message });
@@ -78,6 +81,9 @@ class SendMessage extends React.Component {
     );
   }
   render() {
+    if (this.state.success) {
+      return <Redirect to='/details' />
+    }
     const { classes, ...rest } = this.props;
     return (
       <div>
@@ -123,9 +129,10 @@ class SendMessage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg" onClick={this.handleLogin}>
+                      <Button simple color="primary" size="lg" onClick={this.handleSubmit}>
                         Send Message
                       </Button>
+                      
                     </CardFooter>
                   </form>
                 </Card>

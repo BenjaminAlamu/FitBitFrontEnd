@@ -105,9 +105,9 @@ class DashboardPage extends React.Component {
                       className={classes.navLink + " " + classes.navLinkActive}
                       onClick={e => e.preventDefault()}
                       color="transparent"
-                    >
+                    ><Link to = {'/sendmessage'} id = "nav-link">SEND MESSAGE</Link>
                       {/* <Explore className={classes.icons} />  */}
-                      SEND MESSAGE
+                      
                     </Button>
                   </ListItem>
                 </List>

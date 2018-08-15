@@ -27,3 +27,8 @@ html,body{
     width:70vw;
     margin: auto;
 }
+
+#nav-link{
+    color: white;
+    text-decoration: white
+}

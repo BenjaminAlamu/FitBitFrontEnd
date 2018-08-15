@@ -27,6 +27,7 @@ import {Link, Redirect} from "react-router-dom";
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/bg7.jpg";
+import { userInfo } from "os";
 
 class DashboardPage extends React.Component {
   constructor(props) {
@@ -35,7 +36,9 @@ class DashboardPage extends React.Component {
     this.state = {
       cardAnimaton: "cardHidden",
       selectedOption: "Admin",
-      list : []
+      list : [],
+      view: false,
+      send: false
     };
     this.handleOptionChange = this.handleOptionChange.bind(this);
   }
@@ -54,28 +57,37 @@ class DashboardPage extends React.Component {
   }
 
   componentWillMount(){
-    console.log("Here");
+    console.log("Herefefe");
     var id = localStorage.getItem('userid');
 
     const self = this;
     fetch('http://localhost:1337/view', {
-        headers: {
-          method: 'POST',
-            // 'Authorization': this.getToken(),
-            "Content-Type": "application/json"
-        }}).then((res) => res.json())
-    .then(function(data){
-        // if(data.tokenNotFound == true){
-        //     self.setState({tokenNotFound :true})
-        // }
-        console.log(data);
-        self.setState({list : data},() => console.log(self.state.list))
-        console.log(self.state.list);
-        
-    }).catch((err)=>console.log(err))
+            
+      method: 'POST',
+      // credentials: "include",
+      body:JSON.stringify({
+
+      }),
+      headers: {
+        Accept: "application/json",
+          "Content-Type": "application/json",
+          // Cache:'no-cache'
+      }
+  }).then((res) => res.json())
+  .then(function(data){
+    console.log(data);
+    self.setState({ list: data });
+  } )
+  .catch((err)=>console.log(err))    
 }
+  redirectDetails(){
+    this.setState({view: true});
+  }
 
   render() {
+    if(this.state.view){
+      <Redirect to='/details' />
+    }
     const { classes, ...rest } = this.props;
     return (
       <div>
@@ -100,25 +112,29 @@ class DashboardPage extends React.Component {
             />
           <div id="nav-tabs">
             <h4>Here are your patients</h4>
+            {console.log(this.state)}
             <GridContainer>
-              <GridItem xs={12} sm={12} md={6}>
+              {this.state.list.map((user, index) =>{
+              return <GridItem xs={12} sm={12} md={6} key = {index}>
                 <CustomTabs
                   headerColor="primary"
                   tabs={[
                     {
-                      tabName: "Name Surname",
+                      tabName: user.firstname + " " + user.lastname,
                       // tabIcon: Face,
                       tabContent: (
                         <div className={classes.textCenter}>
-                          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut, porro!</p>
-                          <Button simple color="rose" size="lg">View Data</Button>
-                          <Button simple color="info" size="lg">Send Message</Button>
+                          <p>Email: {user.email}</p>
+                          <p>Phone Number: {user.number}</p>
+                          <Button simple color="rose" size="lg" ><Link to = {'/details'}>View Data</Link></Button>
+                          <Button simple color="info" size="lg"><Link to = {'/sendmessage'}>Send Message</Link></Button>
                         </div>
                       )
                     }
                   ]}
                 />
               </GridItem>
+              })}
             </GridContainer>
           </div>
       </div>

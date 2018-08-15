@@ -31,7 +31,8 @@ class RegisterPage extends React.Component {
     this.state = {
       cardAnimaton: "cardHidden",
       selectedOption: "Admin",
-      error:""
+      error:"",
+      success: false
     };
     this.handleOptionChange = this.handleOptionChange.bind(this);
   }
@@ -74,7 +75,11 @@ class RegisterPage extends React.Component {
           console.log(data);
             if(data.success === true){
                 console.log("Here baby");
-                return <Redirect to='/login' />
+                self.setState(function (state,props){
+                  return {
+                    success:true
+                  }
+                })
             }
             else{
                 self.setState({ error: data.message });
@@ -95,6 +100,9 @@ class RegisterPage extends React.Component {
     );
   }
   render() {
+    if (this.state.success) {
+      return <Redirect to='/dashboard' />
+    }
     const { classes, ...rest } = this.props;
     return (
       <div>

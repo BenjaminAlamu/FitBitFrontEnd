@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect, Link} from 'react-router-dom';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -29,7 +30,8 @@ class LoginPage extends React.Component {
     // we use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: "cardHidden",
-      error: " "
+      error: " ",
+      login: false
     }
     this.handleLogin = this.handleLogin.bind(this);
   }
@@ -58,9 +60,7 @@ class LoginPage extends React.Component {
         .then(function(data){
           console.log(data);
             if(data.success === true){
-                if(data.usertype != "Doctor"){
-                  self.setState({ error: 'Only Doctors can currently login' });
-                }
+              self.setState({ login: true });
             }
             else{
                 self.setState({ error: data.message });
@@ -80,6 +80,9 @@ class LoginPage extends React.Component {
     );
   }
   render() {
+    if (this.state.login) {
+      return <Redirect to='/dashboard' />
+    }
     const { classes, ...rest } = this.props;
     return (
       <div>
