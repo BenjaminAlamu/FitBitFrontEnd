@@ -240,14 +240,6 @@ class RegisterPage extends React.Component {
                         Doctor
                         </label>
                     </div>
-                    <div className="radio">
-                        <label>
-                        <input type="radio" value="User" 
-                                        checked={this.state.selectedOption === 'User'} 
-                                        onChange={this.handleOptionChange} />
-                        User
-                        </label>
-                    </div>
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
                       <Button simple color="primary" size="lg" onClick = {this.handleRegister}>

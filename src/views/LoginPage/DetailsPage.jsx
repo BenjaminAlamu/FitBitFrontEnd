@@ -37,8 +37,9 @@ class DashboardPage extends React.Component {
       cardAnimaton: "cardHidden",
       selectedOption: "Admin",
       date: '',
-      token: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2TDlUOEQiLCJhdWQiOiIyMkNZQjUiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyaHIgcnBybyIsImV4cCI6MTUzNTk3NDM3NywiaWF0IjoxNTMzMzkxNjE3fQ.pm96PgAwsCfN2rWaPhecPtJ7LlNVOt8uS2Hb-4OzO1Q"',
-      chartData: {}
+      token: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2TDlUOEQiLCJhdWQiOiIyMkNZQjUiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJhY3QgcnNldCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTY5MjYxMTM0LCJpYXQiOjE1Mzc3MjUxMzR9.ISW6kw5LuHjpr2C3tOMCFW5oxwjnXKh32cYeNJ5fjh4"',
+      chartData: {},
+      bodyData: {}
     };
     this.handleOptionChange = this.handleOptionChange.bind(this);
   }
@@ -82,13 +83,13 @@ class DashboardPage extends React.Component {
 }
 
   componentDidMount() {
-    // we add a hidden class to the card and after 700 ms we delete it and the transition appears
-    setTimeout(
-      function() {
-        this.setState({ cardAnimaton: "" });
-      }.bind(this),
-      700
-    );
+    const self = this;
+    fetch('http://localhost:1337/data', {})
+    .then((res) => res.json())
+    .then(function(data){ 
+      self.state.bodyData = data;
+      console.log(data);
+    }).catch((err)=>console.log(err))
   }
   render() {
     const { classes, ...rest } = this.props;
@@ -113,6 +114,24 @@ class DashboardPage extends React.Component {
                 </List>
               }
             />
+            <div class="row justify-content-center">
+  <div class="col-sm-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-center">Blood Pressure</h5>
+        <p class="card-text text-center">{this.state.bodyData.systolicBP}/{this.state.bodyData.diastolicBP}mmHg</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-center">Body Temperature</h5>
+        <p class="card-text text-center">{this.state.bodyData.bodyTemp}<sup>o</sup>C</p>
+      </div>
+    </div>
+  </div>
+</div>
             <div className = "dataChart">
       <div className="chart" width="400" height="400">
         <Bar
@@ -138,6 +157,7 @@ class DashboardPage extends React.Component {
         />
         </div>
         </div>
+        
       </div>
     );
   }
