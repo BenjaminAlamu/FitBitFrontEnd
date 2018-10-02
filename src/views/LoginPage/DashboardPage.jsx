@@ -1,33 +1,16 @@
 import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-// @material-ui/icons
-import Email from "@material-ui/icons/Email";
-import LockOutline from "@material-ui/icons/LockOutline";
-import People from "@material-ui/icons/People";
-// core components
 import Header from "components/Header/Header.jsx";
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-import tabsStyle from "assets/jss/material-kit-react/views/componentsSections/tabsStyle.jsx";
-import Tooltip from "@material-ui/core/Tooltip";
-import Card from "components/Card/Card.jsx";
-import CardBody from "components/Card/CardBody.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import CardFooter from "components/Card/CardFooter.jsx";
-import CustomInput from "components/CustomInput/CustomInput.jsx";
 import {Link, Redirect} from "react-router-dom";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
-
-import image from "assets/img/bg7.jpg";
-import { userInfo } from "os";
 
 class DashboardPage extends React.Component {
   constructor(props) {

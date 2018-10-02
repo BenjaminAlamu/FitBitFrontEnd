@@ -1,5 +1,3 @@
-import Components from "views/Components/Components.jsx";
-import LandingPage from "views/LandingPage/LandingPage.jsx";
 import LoginPage from "views/LoginPage/LoginPage.jsx";
 import RegisterPage from "views/LoginPage/RegisterPage.jsx";
 import DashboardPage from "views/LoginPage/DashboardPage.jsx";
