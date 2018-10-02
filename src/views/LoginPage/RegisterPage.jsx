@@ -63,7 +63,7 @@ class RegisterPage extends React.Component {
                 username,
                 password,
                 number,
-                usertype
+                usertype: "User"
             }),
             headers: {
               Accept: "application/json",
@@ -82,6 +82,7 @@ class RegisterPage extends React.Component {
                 })
             }
             else{
+              console.log("Error");
                 self.setState({ error: data.message });
             }
         
@@ -128,6 +129,7 @@ class RegisterPage extends React.Component {
                   <form className={classes.form}>
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>Create User</h4>
+                      <p>{this.state.error}</p>
                     </CardHeader>
                     <CardBody>
                       <CustomInput
@@ -222,24 +224,6 @@ class RegisterPage extends React.Component {
                           )
                         }}
                       />
-                      
-                      <p>Select user type</p>
-                      <div className="radio">
-                        <label>
-                        <input type="radio" value="Admin" 
-                                        checked={this.state.selectedOption === 'Admin'} 
-                                        onChange={this.handleOptionChange} />
-                        Admin
-                        </label>
-                    </div>
-                    <div className="radio">
-                        <label>
-                        <input type="radio" value="Doctor" 
-                                        checked={this.state.selectedOption === 'Doctor'} 
-                                        onChange={this.handleOptionChange} />
-                        Doctor
-                        </label>
-                    </div>
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
                       <Button simple color="primary" size="lg" onClick = {this.handleRegister}>

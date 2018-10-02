@@ -115,7 +115,7 @@ class DashboardPage extends React.Component {
               }
             />
             <div class="row justify-content-center">
-  <div class="col-sm-5">
+  <div class="col-sm-3">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title text-center">Blood Pressure</h5>
@@ -123,11 +123,19 @@ class DashboardPage extends React.Component {
       </div>
     </div>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-3">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title text-center">Body Temperature</h5>
         <p class="card-text text-center">{this.state.bodyData.bodyTemp}<sup>o</sup>C</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-center">Blood Sugar</h5>
+        <p class="card-text text-center">{this.state.bodyData.bloodsugar}mmHg</p>
       </div>
     </div>
   </div>
