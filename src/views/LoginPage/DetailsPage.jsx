@@ -117,7 +117,7 @@ class DashboardPage extends React.Component {
     <div class="card">
       <div class="card-body">
         <h5 class="card-title text-center">Blood Sugar</h5>
-        <p class="card-text text-center">{this.state.bodyData.bloodsugar}mmHg</p>
+        <p class="card-text text-center">{this.state.bodyData.bloodsugar}mg/DL</p>
       </div>
     </div>
   </div>
