@@ -37,7 +37,7 @@ class SendMessage extends React.Component {
     console.log("Here");
     e.preventDefault();
     let doctor = "Test Doctor";
-    let patient = "Sample User"
+    let patient = "User"
     let message = document.getElementById('message').value;
     
     const self = this;
@@ -87,7 +87,7 @@ class SendMessage extends React.Component {
         <Header
           absolute
           color="transparent"
-          brand="Material Kit React"
+          brand="Send Message"
           rightLinks={<HeaderLinks />}
           {...rest}
         />

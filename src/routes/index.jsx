@@ -9,7 +9,7 @@ var indexRoutes = [
   // { path: "/profile-page", name: "ProfilePage", component: ProfilePage },
   { path: "/login", name: "LoginPage", component: LoginPage },
   { path: "/dashboard", name: "DashboardPage", component: DashboardPage },
-  // { path: "/register", name: "RegisterPage", component: RegisterPage },
+  { path: "/register", name: "RegisterPage", component: RegisterPage },
   { path: "/details", name: "DetailsPage", component: DetailsPage },
   { path: "/sendmessage", name: "SendMessage", component: SendMessage },
   { path: "/", name: "LoginPage", component: LoginPage },

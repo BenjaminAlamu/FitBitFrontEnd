@@ -75,7 +75,7 @@ class DashboardPage extends React.Component {
     return (
       <div>
         <Header
-              brand="Heart Rate Checker"
+              brand="Health Monitoring System"
               color="primary"
               rightLinks={
                 <List className={classes.list}>
@@ -85,9 +85,9 @@ class DashboardPage extends React.Component {
                       className={classes.navLink + " " + classes.navLinkActive}
                       onClick={e => e.preventDefault()}
                       color="transparent"
-                    >
+                    ><Link to = {'/login'} id = "nav-link">LOG OUT</Link>
                       {/* <Explore className={classes.icons} />  */}
-                      Log Out
+                      
                     </Button>
                   </ListItem>
                 </List>

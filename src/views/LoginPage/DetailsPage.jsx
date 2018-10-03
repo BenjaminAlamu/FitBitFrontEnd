@@ -78,7 +78,7 @@ class DashboardPage extends React.Component {
     return (
       <div>
         <Header
-              brand="Heart Rate Checker"
+              brand="Health Monitoring System"
               color="primary"
               rightLinks={
                 <List className={classes.list}>

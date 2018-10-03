@@ -32,7 +32,8 @@ class RegisterPage extends React.Component {
       cardAnimaton: "cardHidden",
       selectedOption: "Admin",
       error:"",
-      success: false
+      success: false,
+      redirect: false
     };
     this.handleOptionChange = this.handleOptionChange.bind(this);
   }
@@ -75,11 +76,13 @@ class RegisterPage extends React.Component {
           console.log(data);
             if(data.success === true){
                 console.log("Here baby");
-                self.setState(function (state,props){
-                  return {
-                    success:true
-                  }
-                })
+                setTimeout(
+                  function() {
+                    console.log("Wait for state to set");
+                  },
+                  2000
+                );
+                self.setState({ success: true });
             }
             else{
               console.log("Error");
@@ -110,7 +113,7 @@ class RegisterPage extends React.Component {
         <Header
           absolute
           color="transparent"
-          brand="Material Kit React"
+          brand="Register"
           rightLinks={<HeaderLinks />}
           {...rest}
         />
